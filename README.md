@@ -1,2 +1,3 @@
 genderMapper
 ============
+Uses MySQL Database
