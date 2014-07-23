@@ -39,14 +39,12 @@ class GendersController < ApplicationController
 
    def create
 	# Query the DB to see a record of the same name already exists
-	if temp = Gender.find_by_name(gender_params[:name])
-		# Update the place
-		temp.place = gender_params[:place]
-		
-		# Update the Record in DB
-		temp.save
-		redirect_to temp
+	if temp = Gender.where( name: gender_params[:name], place: gender_params[:place]).take
+			# Update the Record in DB
+			temp.save
+			redirect_to temp		
 	else
+	
 		# Create new GenderMapper Object
 		gend = GenderMapper.new
 		@gender = Gender.new(gender_params)
